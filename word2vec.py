@@ -10,13 +10,13 @@ np.random.seed(1234)
 # P(+ | t, c)
 def compute_pos_prob(t_v, c_v):
     dot_product = np.dot(t_v, c_v)
-    return 1/(1 + math.e**-dot_product)
+    return sigmoid(dot_product)  # 1/(1 + math.e**-dot_product)
 
 
 # P(- | t, n_i)
 def compute_neg_prob(t_v, n_v):
     dot_product = np.dot(t_v, n_v)
-    return (math.e**-dot_product)/(1 + math.e**-dot_product)
+    return (math.e**-dot_product) * sigmoid(dot_product)  # (1 + math.e**-dot_product)
 
 
 # compute the SGNS loss and the partial derivatives of the loss
